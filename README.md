@@ -1,4 +1,4 @@
-
+![Thumbnail Alura](https://github.com/jflsk/Fokus/assets/30251616/7eab0b0e-9cb1-415d-96e1-f621c7b554f3)
 ![](https://img.shields.io/github/license/alura-cursos/android-com-kotlin-personalizando-ui)
 
 # Fokus
