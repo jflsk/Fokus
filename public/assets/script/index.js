@@ -7,6 +7,13 @@ const titulo = document.querySelector('.app__title')
 const botoes = document.querySelectorAll('.app__card-button')
 const musicaFocoInput = document.querySelector('#alternar-musica')
 const musica = new Audio('/public/assets/sounds/luna-rise-part-one.mp3')
+const iniciarSom = new Audio('/public/assets/sounds/play.wav')
+const pausarSom = new Audio('/public/assets/sounds/pause.mp3')
+const zerarSom = new Audio('/public/assets/sounds/beep.mp3')
+const startPauseBt = document.querySelector('#start-pause')
+
+let tempoDecorridoEmSegundos = 5
+let intervaloId = null
 
 musicaFocoInput.addEventListener('change', () => {
     if(musica.paused) {
@@ -59,3 +66,30 @@ function alterarContexto(contexto) {
             break;
     }
 }
+
+const contagemRegressiva = () => {
+    if (tempoDecorridoEmSegundos <= 0) {
+        zerar()
+        zerarSom.play()
+        return
+    }
+    tempoDecorridoEmSegundos -= 1
+    console.log('Temporizador: ' + tempoDecorridoEmSegundos)
+}
+
+function iniciarOuPausar () {
+    if (intervaloId) {
+        zerar()
+        pausarSom.play()
+        return
+    }
+    iniciarSom.play()
+    intervaloId = setInterval(contagemRegressiva, 1000)
+}
+
+startPauseBt.addEventListener('click', iniciarOuPausar)
+
+function zerar() {
+    clearInterval(intervaloId)
+    intervaloId = null
+}   
